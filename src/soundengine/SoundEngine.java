@@ -2,15 +2,14 @@ package soundengine;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.IntBuffer;
 import soundengine.ui.Demo;
 
 public class SoundEngine {
 
     public SoundEngine() throws FileNotFoundException {
         OpenALFacade f = new OpenALFacade();
-        IntBuffer buf = f.loadSample("Battle.wav");
-        IntBuffer src = f.storeSouce(buf);
+        int buf = f.loadSample("Battle.wav");
+        int src = f.storeSouce(buf);
         f.storeListener();
         f.playSound(src);
 

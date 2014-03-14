@@ -6,7 +6,6 @@
 package soundengine.ui;
 
 import java.io.File;
-import java.nio.IntBuffer;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import soundengine.OpenALFacade;
@@ -17,15 +16,19 @@ import soundengine.OpenALFacade;
  */
 public class Demo extends javax.swing.JFrame {
 
+    private String fileName;
+    private int src;
+    private int buf;
+
+    private OpenALFacade openAL = new OpenALFacade();
+
     /**
      * Creates new form Demo2
      */
     public Demo() {
+        lookAndFeel();
         initComponents();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV audio",
-                "wav");
-        fileChooser.setFileFilter(filter);
-
+        initFileChooser();
     }
 
     /**
@@ -145,15 +148,15 @@ public class Demo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playSampleActionPerformed
-        f.playSound(src);
+        openAL.playSound(src);
     }//GEN-LAST:event_playSampleActionPerformed
 
     private void stopSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSampleActionPerformed
-        f.stopSound(src);
+        openAL.stopSound(src);
     }//GEN-LAST:event_stopSampleActionPerformed
 
     private void pauseSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSampleActionPerformed
-        f.pauseSound(src);
+        openAL.pauseSound(src);
     }//GEN-LAST:event_pauseSampleActionPerformed
 
     private void sampleSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleSelectActionPerformed
@@ -163,31 +166,27 @@ public class Demo extends javax.swing.JFrame {
             fileName = file.getName();
             userSampleInput.setText(file.getAbsolutePath());
 
-            buf = f.loadSample(fileName);
-            src = f.storeSouce(buf);
-            f.storeListener();
+            buf = openAL.loadSample(fileName);
+            src = openAL.storeSouce(buf);
+            openAL.storeListener();
         } else {
             System.out.println("NOTHING");
         }
     }//GEN-LAST:event_sampleSelectActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        f.cleanUp(src, buf);
+        openAL.cleanUp(src, buf);
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
     private void userSampleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSampleInputActionPerformed
     }//GEN-LAST:event_userSampleInputActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
+    private void initFileChooser() {
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV audio",
+                "wav");
+        fileChooser.setFileFilter(filter);
+    }
+    private void lookAndFeel() {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager
                     .getInstalledLookAndFeels()) {
@@ -209,16 +208,7 @@ public class Demo extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Demo.class.getName()).log(
                     java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Demo().setVisible(true);
-            }
-        });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem exit;
     private javax.swing.JFileChooser fileChooser;
@@ -231,9 +221,5 @@ public class Demo extends javax.swing.JFrame {
     private javax.swing.JButton stopSample;
     private javax.swing.JTextField userSampleInput;
     // End of variables declaration//GEN-END:variables
-    private String fileName;
-    IntBuffer src;
-    IntBuffer buf;
-    OpenALFacade f = new OpenALFacade();
 
 }

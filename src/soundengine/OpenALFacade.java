@@ -54,7 +54,7 @@ public class OpenALFacade {
         return buf.get(0);
     }
 
-    public int storeSouce(int buf) {
+    public int storeSource(int buf) {
         //store the source details
         IntBuffer src = BufferUtils.createIntBuffer(1);
         alGenSources(src);

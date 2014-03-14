@@ -7,6 +7,7 @@ package soundengine.ui;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import soundengine.OpenALFacade;
 
@@ -17,8 +18,8 @@ import soundengine.OpenALFacade;
 public class Demo extends javax.swing.JFrame {
 
     private String fileName;
-    private int src;
-    private int buf;
+    private int[] sources = new int[3];
+    private int[] buffers = new int[3];
 
     private OpenALFacade openAL = new OpenALFacade();
 
@@ -47,6 +48,21 @@ public class Demo extends javax.swing.JFrame {
         stopSample = new javax.swing.JButton();
         pauseSample = new javax.swing.JButton();
         sampleSelect = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        playSample1 = new javax.swing.JButton();
+        sampleSelect1 = new javax.swing.JButton();
+        pauseSample1 = new javax.swing.JButton();
+        stopSample1 = new javax.swing.JButton();
+        userSampleInput1 = new javax.swing.JTextField();
+        stopSample2 = new javax.swing.JButton();
+        userSampleInput2 = new javax.swing.JTextField();
+        sampleSelect2 = new javax.swing.JButton();
+        pauseSample2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        playSample2 = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jLabel4 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -61,7 +77,7 @@ public class Demo extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Select Sample");
+        jLabel1.setText("Select First Sample:");
 
         userSampleInput.setEnabled(false);
         userSampleInput.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +107,83 @@ public class Demo extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setText("Select Second Sample:");
+
+        playSample1.setText("Play");
+        playSample1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playSample1ActionPerformed(evt);
+            }
+        });
+
+        sampleSelect1.setText("...");
+        sampleSelect1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sampleSelect1ActionPerformed(evt);
+            }
+        });
+
+        pauseSample1.setText("Pause");
+        pauseSample1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseSample1ActionPerformed(evt);
+            }
+        });
+
+        stopSample1.setText("Stop");
+        stopSample1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopSample1ActionPerformed(evt);
+            }
+        });
+
+        userSampleInput1.setEnabled(false);
+        userSampleInput1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userSampleInput1ActionPerformed(evt);
+            }
+        });
+
+        stopSample2.setText("Stop");
+        stopSample2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stopSample2ActionPerformed(evt);
+            }
+        });
+
+        userSampleInput2.setEnabled(false);
+        userSampleInput2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userSampleInput2ActionPerformed(evt);
+            }
+        });
+
+        sampleSelect2.setText("...");
+        sampleSelect2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sampleSelect2ActionPerformed(evt);
+            }
+        });
+
+        pauseSample2.setText("Pause");
+        pauseSample2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pauseSample2ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Select Third Sample:");
+
+        playSample2.setText("Play");
+        playSample2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playSample2ActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel4.setText("press e to quit");
+
         jMenu1.setText("File");
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
@@ -111,27 +204,60 @@ public class Demo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1)
+            .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(playSample, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pauseSample, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(stopSample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(userSampleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(sampleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel2)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(playSample1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pauseSample1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(stopSample1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(userSampleInput1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(sampleSelect1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel3)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(playSample2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pauseSample2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(stopSample2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(userSampleInput2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(sampleSelect2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel4))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(playSample, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(pauseSample, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(stopSample, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(userSampleInput, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(sampleSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(userSampleInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -141,50 +267,126 @@ public class Demo extends javax.swing.JFrame {
                     .addComponent(playSample)
                     .addComponent(pauseSample)
                     .addComponent(stopSample))
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userSampleInput1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sampleSelect1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playSample1)
+                    .addComponent(pauseSample1)
+                    .addComponent(stopSample1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(userSampleInput2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(sampleSelect2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(playSample2)
+                    .addComponent(pauseSample2)
+                    .addComponent(stopSample2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void playSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playSampleActionPerformed
-        openAL.playSound(src);
+        openAL.playSound(sources[0]);
     }//GEN-LAST:event_playSampleActionPerformed
 
     private void stopSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSampleActionPerformed
-        openAL.stopSound(src);
+        openAL.stopSound(sources[0]);
     }//GEN-LAST:event_stopSampleActionPerformed
 
     private void pauseSampleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSampleActionPerformed
-        openAL.pauseSound(src);
+        openAL.pauseSound(sources[0]);
     }//GEN-LAST:event_pauseSampleActionPerformed
 
     private void sampleSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleSelectActionPerformed
+        selectSample(0, userSampleInput);
+    }//GEN-LAST:event_sampleSelectActionPerformed
+
+    private void selectSample(int index, JTextField input) {
+        fileChooser
+                .setCurrentDirectory(new File(
+                                System.getProperty("user.dir") + "/src/music"));
         int returnVal = fileChooser.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             fileName = file.getName();
-            userSampleInput.setText(file.getAbsolutePath());
+            input.setText(file.getAbsolutePath());
 
-            buf = openAL.loadSample(fileName);
-            src = openAL.storeSouce(buf);
+            buffers[index] = openAL.loadSample(fileName);
+            sources[index] = openAL.storeSource(buffers[index]);
             openAL.storeListener();
         } else {
-            System.out.println("NOTHING");
+            System.out.println("NOTHING SELECTED");
         }
-    }//GEN-LAST:event_sampleSelectActionPerformed
+    }
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-        openAL.cleanUp(src, buf);
+//        openAL.cleanUp(sources[0], buffers[0]);
+//        openAL.cleanUp(sources[1], buffers[1]);
+//        openAL.cleanUp(sources[2], buffers[2]);
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
     private void userSampleInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSampleInputActionPerformed
     }//GEN-LAST:event_userSampleInputActionPerformed
+
+    private void playSample1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playSample1ActionPerformed
+        openAL.playSound(sources[1]);
+    }//GEN-LAST:event_playSample1ActionPerformed
+
+    private void sampleSelect1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleSelect1ActionPerformed
+        selectSample(1, userSampleInput1);
+    }//GEN-LAST:event_sampleSelect1ActionPerformed
+
+    private void pauseSample1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSample1ActionPerformed
+        openAL.pauseSound(sources[1]);
+    }//GEN-LAST:event_pauseSample1ActionPerformed
+
+    private void stopSample1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSample1ActionPerformed
+        openAL.stopSound(sources[1]);
+    }//GEN-LAST:event_stopSample1ActionPerformed
+
+    private void userSampleInput1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSampleInput1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userSampleInput1ActionPerformed
+
+    private void stopSample2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopSample2ActionPerformed
+        openAL.stopSound(sources[2]);
+    }//GEN-LAST:event_stopSample2ActionPerformed
+
+    private void userSampleInput2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userSampleInput2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_userSampleInput2ActionPerformed
+
+    private void sampleSelect2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sampleSelect2ActionPerformed
+        selectSample(2, userSampleInput2);
+    }//GEN-LAST:event_sampleSelect2ActionPerformed
+
+    private void pauseSample2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pauseSample2ActionPerformed
+        openAL.pauseSound(sources[2]);
+    }//GEN-LAST:event_pauseSample2ActionPerformed
+
+    private void playSample2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playSample2ActionPerformed
+        openAL.playSound(sources[2]);
+    }//GEN-LAST:event_playSample2ActionPerformed
     private void initFileChooser() {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("WAV audio",
                 "wav");
         fileChooser.setFileFilter(filter);
+
     }
     private void lookAndFeel() {
         try {
@@ -213,13 +415,28 @@ public class Demo extends javax.swing.JFrame {
     private javax.swing.JMenuItem exit;
     private javax.swing.JFileChooser fileChooser;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JButton pauseSample;
+    private javax.swing.JButton pauseSample1;
+    private javax.swing.JButton pauseSample2;
     private javax.swing.JButton playSample;
+    private javax.swing.JButton playSample1;
+    private javax.swing.JButton playSample2;
     private javax.swing.JButton sampleSelect;
+    private javax.swing.JButton sampleSelect1;
+    private javax.swing.JButton sampleSelect2;
     private javax.swing.JButton stopSample;
+    private javax.swing.JButton stopSample1;
+    private javax.swing.JButton stopSample2;
     private javax.swing.JTextField userSampleInput;
+    private javax.swing.JTextField userSampleInput1;
+    private javax.swing.JTextField userSampleInput2;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -32,9 +32,9 @@ import org.lwjgl.util.WaveData;
  *
  * @author soote
  */
-public class Facade {
+public class OpenALFacade {
 
-    public Facade() {
+    public OpenALFacade() {
         try {
             AL.create();
         } catch (LWJGLException le) {

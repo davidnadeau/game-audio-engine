@@ -3,11 +3,12 @@ package soundengine;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.IntBuffer;
+import soundengine.ui.Demo;
 
 public class SoundEngine {
 
     public SoundEngine() throws FileNotFoundException {
-        Facade f = new Facade();
+        OpenALFacade f = new OpenALFacade();
         IntBuffer buf = f.loadSample("Battle.wav");
         IntBuffer src = f.storeSouce(buf);
         f.storeListener();
@@ -28,7 +29,7 @@ public class SoundEngine {
         return false;
     }
     public static void main(String[] args) throws FileNotFoundException {
-        new SoundEngine();
+        new Demo().setVisible(true);
     }
 
 }

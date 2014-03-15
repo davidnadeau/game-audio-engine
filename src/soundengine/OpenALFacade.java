@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package soundengine;
 
 import java.nio.IntBuffer;
@@ -35,15 +30,9 @@ import org.lwjgl.util.WaveData;
 public class OpenALFacade {
 
     public OpenALFacade() {
-        //initialize OpenAL
-        try {
-            create();
-        } catch (LWJGLException le) {
-        }
-        alGetError();
     }
 
-    public int loadSample(String fileName) {
+    public static IntBuffer loadSample(String fileName) {
         //loading and storing the audio
         IntBuffer buf = BufferUtils.createIntBuffer(1);
         alGenBuffers(buf);
@@ -52,14 +41,14 @@ public class OpenALFacade {
         alBufferData(buf.get(0), wave.format, wave.data,
                 wave.samplerate);
         wave.dispose();
-        return buf.get(0);
+        return buf;
     }
 
-    public int storeSource(int buf) {
+    public static int storeSource(IntBuffer buf) {
         //store the source details
         IntBuffer src = BufferUtils.createIntBuffer(1);
         alGenSources(src);
-        alSourcei(src.get(0), AL_BUFFER, buf);
+        alSourcei(src.get(0), AL_BUFFER, buf.get(0));
         alSourcei(src.get(0), AL_LOOPING, AL_TRUE);
         return src.get(0);
     }
@@ -81,9 +70,17 @@ public class OpenALFacade {
     public void pauseSound(int src) {
         alSourcePause(src);
     }
-    public void cleanUp(int src, int buf) {
+    public void cleanUp(int src, IntBuffer buf) {
         alDeleteSources(src);
-        alDeleteBuffers(buf);
+        alDeleteBuffers(buf.get(0));
+    }
+    public static void init() {
+        //initialize OpenAL
+        try {
+            create();
+        } catch (LWJGLException le) {
+        }
+        alGetError();
     }
 
 }

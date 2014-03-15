@@ -1,14 +1,14 @@
 package soundengine;
 
-import java.io.FileNotFoundException;
 import soundengine.ui.Demo;
 
 public class SoundEngine {
 
-    public SoundEngine() throws FileNotFoundException {
+    public SoundEngine() {
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
+        OpenALFacade.init();
         new Demo().setVisible(true);
     }
 

@@ -323,6 +323,7 @@ public class Demo extends javax.swing.JFrame {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             fileName = file.getName();
+            System.out.println(fileName);
             input.setText(file.getAbsolutePath());
 
             buffers[index] = openAL.loadSample(fileName);
@@ -334,9 +335,9 @@ public class Demo extends javax.swing.JFrame {
     }
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
-//        openAL.cleanUp(sources[0], buffers[0]);
-//        openAL.cleanUp(sources[1], buffers[1]);
-//        openAL.cleanUp(sources[2], buffers[2]);
+        openAL.cleanUp(sources[0], buffers[0]);
+        openAL.cleanUp(sources[0], buffers[0]);
+        openAL.cleanUp(sources[0], buffers[0]);
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 

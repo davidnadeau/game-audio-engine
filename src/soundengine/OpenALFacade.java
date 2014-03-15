@@ -47,7 +47,8 @@ public class OpenALFacade {
         //loading and storing the audio
         IntBuffer buf = BufferUtils.createIntBuffer(1);
         alGenBuffers(buf);
-        WaveData wave = WaveData.create(fileName);
+        WaveData wave = WaveData.create("music/" + fileName);
+        System.out.println(wave.data);
         alBufferData(buf.get(0), wave.format, wave.data,
                 wave.samplerate);
         wave.dispose();

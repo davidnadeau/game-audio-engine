@@ -1,6 +1,12 @@
 # Audio Engine
 
-## Setup
+## Running Engine
+
+*Windows: run windows-install.bat from cmd
+*Linux:   run ./linux-install.sh from terminal
+*MacOSX:  try running ./mac-install.sh from the terminal, I haven't tested on a mac yet.
+
+## Dev Setup
 
 ### Instal lwjgl (version 2.9)
 

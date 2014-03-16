@@ -18,9 +18,12 @@ public enum Samples {
     //manage which buffers get to be in which source (TODO).
     public int source;
 
+    public float volume;
+
     Samples(String fileName) {
         buffer = OpenALFacade.loadSample(fileName + ".wav");
         source = OpenALFacade.storeSource(buffer);
+        volume = 0.5f;
     }
 
 }

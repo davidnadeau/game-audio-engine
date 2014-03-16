@@ -2,9 +2,9 @@
 
 ## Running Engine
 
-*Windows: run windows-install.bat from cmd
-*Linux:   run ./linux-install.sh from terminal
-*MacOSX:  try running ./mac-install.sh from the terminal, I haven't tested on a mac yet.
+* Windows: run <code>windows-install.bat</code> from cmd
+* Linux: run <code>./linux-install.sh</code> from terminal
+* MacOSX: try running <code>./mac-install.sh</code> from the terminal, I haven't tested on a mac yet.
 
 ## Dev Setup
 

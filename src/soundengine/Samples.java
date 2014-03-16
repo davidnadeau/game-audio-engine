@@ -8,9 +8,9 @@ import java.nio.IntBuffer;
  */
 public enum Samples {
 
-    WAR("Battle.wav"),
-    FOOTSTEPS("Footsteps.wav"),
-    GUN2("Gun2.wav");
+    WAR("Battle"),
+    FOOTSTEPS("Footsteps"),
+    GUN2("Gun2");
 
     public final IntBuffer buffer;
 
@@ -19,7 +19,7 @@ public enum Samples {
     public int source;
 
     Samples(String fileName) {
-        buffer = OpenALFacade.loadSample(fileName);
+        buffer = OpenALFacade.loadSample(fileName + ".wav");
         source = OpenALFacade.storeSource(buffer);
     }
 

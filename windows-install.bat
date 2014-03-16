@@ -1,1 +1,1 @@
-java -Djava.library.path="%~dp0windows" -jar SoundEngine.jar
+java -Djava.library.path="%~dp0lib\windows" -jar SoundEngine.jar

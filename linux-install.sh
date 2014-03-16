@@ -1,1 +1,1 @@
-java -Djava.library.path=$(pwd)/linux -jar SoundEngine.jar
+java -Djava.library.path=$(pwd)/lib/linux -jar SoundEngine.jar

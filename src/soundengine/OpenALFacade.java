@@ -123,13 +123,15 @@ public class OpenALFacade {
             s.volume = newVolume;
         }
     }
-
+    /**
+     * Reduces a samples sound to 0. This task runs in a thread so as not to
+     * hang the game.
+     */
     public void fadeOutSound(final Samples s, final JSlider js) {
-        Thread t1 = new Thread(new Runnable() {
+        Thread fadeout = new Thread(new Runnable() {
             public void run() {
                 while (true) {
                     setVolume(s, (s.volume * MAXVOLUME) - 1.0f);
-                    System.out.println("Volume: " + s.volume);
                     js.setValue((int) (s.volume * 100));
                     if (s.volume > 0.0f) {
                         try {
@@ -143,22 +145,30 @@ public class OpenALFacade {
                 }
             }
         });
-        t1.start();
+        fadeout.start();
     }
+    /**
+     * Reduces every samples sound to 0. This task runs in a thread so as not to
+     * hang the game.
+     */
     public void fadeOutSounds(JSlider slider) {
-//        int i = 0;
+        //real code
 //        for (Samples s : Samples.values()) {
-//            fadeOutSound(s, sliders[i++]);
+//            fadeOutSound(s);
 //        }
+        //just for demo
         fadeOutSound(Samples.values()[0], slider);
 
     }
+    /**
+     * Increases a samples sound to 100. This task runs in a thread so as not to
+     * hang the game.
+     */
     public void fadeInSound(final Samples s, final JSlider js) {
         Thread t1 = new Thread(new Runnable() {
             public void run() {
                 while (true) {
                     setVolume(s, (s.volume * MAXVOLUME) + 1.0f);
-                    System.out.println("Volume: " + s.volume);
                     js.setValue((int) (s.volume * 100));
                     if (s.volume < 1.0f) {
                         try {
@@ -174,11 +184,16 @@ public class OpenALFacade {
         });
         t1.start();
     }
+    /**
+     * Increases every samples sound to 100. This task runs in a thread so as
+     * not to hang the game.
+     */
     public void fadeInSounds(JSlider slider) {
-//        int i = 0;
+        //real code
 //        for (Samples s : Samples.values()) {
-//            fadeInSound(s, sliders[i++]);
+//            fadeInSound(s);
 //        }
+        //just for demo
         fadeInSound(Samples.values()[0], slider);
 
     }

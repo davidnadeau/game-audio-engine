@@ -165,7 +165,7 @@ public class OpenALFacade {
      * hang the game.
      */
     public void fadeInSound(final Samples s, final JSlider js) {
-        Thread t1 = new Thread(new Runnable() {
+        Thread fadein = new Thread(new Runnable() {
             public void run() {
                 while (true) {
                     setVolume(s, (s.volume * MAXVOLUME) + 1.0f);
@@ -182,7 +182,7 @@ public class OpenALFacade {
                 }
             }
         });
-        t1.start();
+        fadein.start();
     }
     /**
      * Increases every samples sound to 100. This task runs in a thread so as
@@ -219,6 +219,9 @@ public class OpenALFacade {
         }
         alGetError();
     }
+    /**
+     * Destroy on OpenAL instance
+     */
     public static void destructor() {
         destroy();
     }

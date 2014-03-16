@@ -73,7 +73,7 @@ public class Demo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(232, 232, 232));
-        setResizable(false);
+        setMinimumSize(new java.awt.Dimension(640, 275));
 
         playSample.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         playSample.setText("Play");

@@ -51,6 +51,14 @@ public class Demo extends javax.swing.JFrame {
         stopSample3 = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel5 = new javax.swing.JLabel();
+        jSlider1 = new javax.swing.JSlider();
+        jLabel6 = new javax.swing.JLabel();
+        jSlider2 = new javax.swing.JSlider();
+        jLabel7 = new javax.swing.JLabel();
+        jSlider3 = new javax.swing.JSlider();
+        jLabel8 = new javax.swing.JLabel();
+        jSlider4 = new javax.swing.JSlider();
+        jLabel9 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         exit = new javax.swing.JMenuItem();
@@ -58,105 +66,192 @@ public class Demo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(232, 232, 232));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        playSample.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         playSample.setText("Play");
         playSample.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playSampleActionPerformed(evt);
             }
         });
+        getContentPane().add(playSample, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 89, -1));
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel1.setText("War Sample:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 15));
 
+        pauseSample.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         pauseSample.setText("Pause");
         pauseSample.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseSampleActionPerformed(evt);
             }
         });
+        getContentPane().add(pauseSample, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 84, -1));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 412, 12));
 
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel2.setText("Footsteps Sample:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, 15));
 
+        playSample1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         playSample1.setText("Play");
         playSample1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playSample1ActionPerformed(evt);
             }
         });
+        getContentPane().add(playSample1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 89, -1));
 
+        pauseSample1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         pauseSample1.setText("Pause");
         pauseSample1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseSample1ActionPerformed(evt);
             }
         });
+        getContentPane().add(pauseSample1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 90, 84, -1));
 
+        stopSample1.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         stopSample1.setText("Stop");
         stopSample1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopSample1ActionPerformed(evt);
             }
         });
+        getContentPane().add(stopSample1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 93, -1));
 
+        stopSample2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         stopSample2.setText("Stop");
         stopSample2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopSample2ActionPerformed(evt);
             }
         });
+        getContentPane().add(stopSample2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, 93, -1));
 
+        pauseSample2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         pauseSample2.setText("Pause");
         pauseSample2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseSample2ActionPerformed(evt);
             }
         });
+        getContentPane().add(pauseSample2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 84, -1));
 
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel3.setText("Gun Shot Sample:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, 15));
 
+        playSample2.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         playSample2.setText("Play");
         playSample2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playSample2ActionPerformed(evt);
             }
         });
+        getContentPane().add(playSample2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 89, -1));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 412, 10));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         jLabel4.setText("press e to quit");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 0, -1, -1));
 
+        stopSample4.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         stopSample4.setText("Stop");
         stopSample4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopSample4ActionPerformed(evt);
             }
         });
+        getContentPane().add(stopSample4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 93, -1));
 
+        playSample3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         playSample3.setText("Play All");
         playSample3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playSample3ActionPerformed(evt);
             }
         });
+        getContentPane().add(playSample3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 81, -1));
 
+        pauseSample3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         pauseSample3.setText("Pause All");
         pauseSample3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pauseSample3ActionPerformed(evt);
             }
         });
+        getContentPane().add(pauseSample3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 105, -1));
 
+        stopSample3.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         stopSample3.setText("Stop All");
         stopSample3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stopSample3ActionPerformed(evt);
             }
         });
+        getContentPane().add(stopSample3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 210, 92, -1));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 412, 11));
 
+        jLabel5.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
         jLabel5.setText("Manage All Samples:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 15));
+
+        jSlider1.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider1StateChanged(evt);
+            }
+        });
+        jSlider1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jSlider1PropertyChange(evt);
+            }
+        });
+        getContentPane().add(jSlider1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, 110, -1));
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel6.setText("Volume:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, 15));
+
+        jSlider2.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider2StateChanged(evt);
+            }
+        });
+        getContentPane().add(jSlider2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 110, -1));
+
+        jLabel7.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel7.setText("Volume:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, -1, 15));
+
+        jSlider3.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider3StateChanged(evt);
+            }
+        });
+        getContentPane().add(jSlider3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, 110, -1));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel8.setText("Volume:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, 15));
+
+        jSlider4.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jSlider4StateChanged(evt);
+            }
+        });
+        getContentPane().add(jSlider4, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 220, 110, -1));
+
+        jLabel9.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
+        jLabel9.setText("Volume:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, -1, 15));
 
         jMenu1.setText("File");
 
         exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, 0));
+        exit.setFont(new java.awt.Font("Dialog", 0, 10)); // NOI18N
         exit.setText("Exit");
         exit.setToolTipText("");
         exit.addActionListener(new java.awt.event.ActionListener() {
@@ -169,94 +264,6 @@ public class Demo extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jSeparator4)
-                        .addComponent(jSeparator2)
-                        .addComponent(jSeparator1)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(playSample, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pauseSample, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(stopSample4, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(playSample1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pauseSample1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(stopSample1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(playSample2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(pauseSample2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(stopSample2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(105, 105, 105)
-                                .addComponent(jLabel4))))
-                    .addComponent(jLabel5)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(playSample3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pauseSample3, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(stopSample3, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playSample)
-                    .addComponent(pauseSample)
-                    .addComponent(stopSample4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playSample1)
-                    .addComponent(pauseSample1)
-                    .addComponent(stopSample1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playSample2)
-                    .addComponent(pauseSample2)
-                    .addComponent(stopSample2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playSample3)
-                    .addComponent(pauseSample3)
-                    .addComponent(stopSample3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -315,6 +322,27 @@ public class Demo extends javax.swing.JFrame {
         openAL.stopSounds();
     }//GEN-LAST:event_stopSample3ActionPerformed
 
+    private void jSlider1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jSlider1PropertyChange
+
+    }//GEN-LAST:event_jSlider1PropertyChange
+
+    private void jSlider1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider1StateChanged
+        openAL.setVolume(Samples.WAR.source, jSlider1.getValue());
+    }//GEN-LAST:event_jSlider1StateChanged
+
+    private void jSlider2StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider2StateChanged
+        openAL.setVolume(Samples.FOOTSTEPS.source, jSlider2.getValue());
+    }//GEN-LAST:event_jSlider2StateChanged
+
+    private void jSlider3StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider3StateChanged
+        openAL.setVolume(Samples.GUN2.source, jSlider3.getValue());
+
+    }//GEN-LAST:event_jSlider3StateChanged
+
+    private void jSlider4StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSlider4StateChanged
+        openAL.setMasterVolume(jSlider4.getValue());
+    }//GEN-LAST:event_jSlider4StateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem exit;
     private javax.swing.JFileChooser fileChooser;
@@ -323,11 +351,19 @@ public class Demo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSlider jSlider1;
+    private javax.swing.JSlider jSlider2;
+    private javax.swing.JSlider jSlider3;
+    private javax.swing.JSlider jSlider4;
     private javax.swing.JButton pauseSample;
     private javax.swing.JButton pauseSample1;
     private javax.swing.JButton pauseSample2;

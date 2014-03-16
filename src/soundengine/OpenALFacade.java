@@ -3,26 +3,9 @@ package soundengine;
 import java.nio.IntBuffer;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
-import static org.lwjgl.openal.AL.create;
-import static org.lwjgl.openal.AL.destroy;
-import static org.lwjgl.openal.AL10.AL_BUFFER;
-import static org.lwjgl.openal.AL10.AL_LOOPING;
-import static org.lwjgl.openal.AL10.AL_ORIENTATION;
-import static org.lwjgl.openal.AL10.AL_POSITION;
-import static org.lwjgl.openal.AL10.AL_TRUE;
-import static org.lwjgl.openal.AL10.AL_VELOCITY;
-import static org.lwjgl.openal.AL10.alBufferData;
-import static org.lwjgl.openal.AL10.alDeleteBuffers;
-import static org.lwjgl.openal.AL10.alDeleteSources;
-import static org.lwjgl.openal.AL10.alGenBuffers;
-import static org.lwjgl.openal.AL10.alGenSources;
-import static org.lwjgl.openal.AL10.alGetError;
-import static org.lwjgl.openal.AL10.alListener3f;
-import static org.lwjgl.openal.AL10.alSourcePause;
-import static org.lwjgl.openal.AL10.alSourcePlay;
-import static org.lwjgl.openal.AL10.alSourceStop;
-import static org.lwjgl.openal.AL10.alSourcei;
 import org.lwjgl.util.WaveData;
+import static org.lwjgl.openal.AL.*;
+import static org.lwjgl.openal.AL10.*;
 
 /**
  *
@@ -99,6 +82,21 @@ public class OpenALFacade {
     public void pauseSounds() {
         for (Samples s : Samples.values()) {
             alSourcePause(s.source);
+        }
+    }
+
+    /**
+     * Set volume of a single sample
+     */
+    public void setVolume(int src, int value) {
+        alSourcef(src, AL_GAIN, (float) (((value) / 100.0) * 1.0f));
+    }
+    /**
+     * Set volume of every sample
+     */
+    public void setMasterVolume(int value) {
+        for (Samples s : Samples.values()) {
+            alSourcef(s.source, AL_GAIN, (float) (((value) / 100.0) * 1.0f));
         }
     }
 

@@ -1,18 +1,15 @@
 package soundengine;
 
+import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
 import javax.swing.JSlider;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import static org.lwjgl.openal.AL.create;
 import static org.lwjgl.openal.AL.destroy;
-import org.lwjgl.util.WaveData;
 import static org.lwjgl.openal.AL10.*;
+import org.lwjgl.util.WaveData;
 
-/**
- *
- * @author soote
- */
 public class OpenALFacade {
 
     final float MAXVOLUME = 100.0f;
@@ -51,64 +48,77 @@ public class OpenALFacade {
         //return the sources descriptor
         return src.get(0);
     }
-    public void storeListener() {
+    public void newListener() {
         //store listener details (location)
         alListener3f(AL_POSITION, 0f, 0f, 0f);
         alListener3f(AL_VELOCITY, 0f, 0f, 0f);
         alListener3f(AL_ORIENTATION, 0f, 0f, 0f);
+        alListener3f(AL_GAIN, 0f, 0f, 0f);
     }
-
+    public void setListenerPosition(float x, float y, float z) {
+        alListener3f(AL_POSITION, x, y, z);
+    }
+    public void setListenerVelocity(float x, float y, float z) {
+        alListener3f(AL_VELOCITY, x, y, z);
+    }
+    public void setListenerOrientation(float x, float y, float z) {
+        alListener3f(AL_ORIENTATION, x, y, z);
+    }
+    public void setListenerGain(float x, float y, float z) {
+        alListener3f(AL_GAIN, x, y, z);
+    }
     /**
      * Play a single sample
      */
-    public void playSound(Samples s) {
-        alSourcePlay(s.source);
+    public void playSound(Source s) {
+        alSourcePlay(s.index);
     }
+
     /**
      * Play every sample loaded into a source
      */
     public void playSounds() {
-        for (Samples s : Samples.values()) {
-            alSourcePlay(s.source);
-        }
+//        for (Samples s : Samples.values()) {
+//            alSourcePlay(s.source);
+//        }
     }
     /**
      * Stop a single sample
      */
-    public void stopSound(Samples s) {
-        alSourceStop(s.source);
+    public void stopSound(Source s) {
+        alSourceStop(s.index);
     }
     /**
      * Stop every sample loaded into a source
      */
     public void stopSounds() {
         //TODO: only stop playing samples
-        for (Samples s : Samples.values()) {
-            alSourceStop(s.source);
-        }
+//        for (Samples s : Samples.values()) {
+//            alSourceStop(s.source);
+//        }
     }
     /**
      * Pause a single sample
      */
-    public void pauseSound(Samples s) {
-        alSourcePause(s.source);
+    public void pauseSound(Source s) {
+        alSourcePause(s.index);
     }
     /**
      * Pause every sample loaded into a source
      */
     public void pauseSounds() {
         //TODO: only pause playing samples
-        for (Samples s : Samples.values()) {
-            alSourcePause(s.source);
-        }
+//        for (Sample s : Sample.values()) {
+//            alSourcePause(s.source);
+//        }
     }
 
     /**
      * Set volume of a single sample
      */
-    public void setVolume(Samples s, float value) {
+    public void setVolume(Source s, float value) {
         float newVolume = value / MAXVOLUME;
-        alSourcef(s.source, AL_GAIN, newVolume);
+        alSourcef(s.index, AL_GAIN, newVolume);
         s.volume = newVolume;
     }
     /**
@@ -118,16 +128,16 @@ public class OpenALFacade {
         float newVolume = value / MAXVOLUME;
         //set the volume of every sample
         //TODO: only adjust volume of playing samples
-        for (Samples s : Samples.values()) {
-            alSourcef(s.source, AL_GAIN, newVolume);
-            s.volume = newVolume;
-        }
+//        for (Sample s : Sample.values()) {
+//            alSourcef(s.source, AL_GAIN, newVolume);
+//            s.volume = newVolume;
+//        }
     }
     /**
      * Reduces a samples sound to 0. This task runs in a thread so as not to
      * hang the game.
      */
-    public void fadeOutSound(final Samples s, final JSlider js) {
+    public void fadeOutSound(final Source s, final JSlider js) {
         Thread fadeout = new Thread(new Runnable() {
             public void run() {
                 while (true) {
@@ -157,14 +167,14 @@ public class OpenALFacade {
 //            fadeOutSound(s);
 //        }
         //just for demo
-        fadeOutSound(Samples.values()[0], slider);
+//        fadeOutSound(Samples.values()[0], slider);
 
     }
     /**
      * Increases a samples sound to 100. This task runs in a thread so as not to
      * hang the game.
      */
-    public void fadeInSound(final Samples s, final JSlider js) {
+    public void fadeInSound(final Source s, final JSlider js) {
         Thread fadein = new Thread(new Runnable() {
             public void run() {
                 while (true) {
@@ -194,18 +204,53 @@ public class OpenALFacade {
 //            fadeInSound(s);
 //        }
         //just for demo
-        fadeInSound(Samples.values()[0], slider);
+//        fadeInSound(Samples.values()[0], slider);
 
     }
 
+    public void rotateListener(final Source s) {
+        Thread fadein = new Thread(new Runnable() {
+            public void run() {
+                while (true) {
+                    if (s.volume < 1.0f) {
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }
+        });
+        fadein.start();
+    }
+    public void setLoopingMode(Source s, boolean val) {
+        alSourcei(s.index, AL_LOOPING, val ? AL_TRUE : AL_FALSE);
+    }
+    public void setVelocity(Source s, float x, float y, float z) {
+        FloatBuffer fbuf = BufferUtils.createFloatBuffer(3).put(
+                new float[] {x, y, z});
+        alSource(s.index, AL_VELOCITY, fbuf);
+    }
+    public void setPosition(Source s, float x, float y, float z) {
+        FloatBuffer fbuf = BufferUtils.createFloatBuffer(3).put(
+                new float[] {x, y, z});
+        alSource(s.index, AL_POSITION, fbuf);
+    }
+    public void setPitch(Source s, float pitch) {
+        alSourcef(s.index, AL_PITCH, pitch);
+
+    }
     /**
      * Release sources and buffers
      */
     public void cleanUp() {
-        for (Samples s : Samples.values()) {
-            alDeleteSources(s.source);
-            alDeleteBuffers(s.buffer.get(0));
-        }
+//        for (Samples s : Samples.values()) {
+//            alDeleteSources(s.source);
+//            alDeleteBuffers(s.buffer.get(0));
+//        }
 
     }
     /**

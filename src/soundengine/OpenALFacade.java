@@ -9,6 +9,7 @@ import org.lwjgl.LWJGLException;
 import static org.lwjgl.openal.AL.create;
 import static org.lwjgl.openal.AL.destroy;
 import static org.lwjgl.openal.AL10.*;
+import org.lwjgl.openal.AL11;
 import org.lwjgl.util.WaveData;
 
 public class OpenALFacade {
@@ -85,7 +86,7 @@ public class OpenALFacade {
     }
 
     public void moveListener(final JTextField posTB, final float[] vel,
-            int duration) {
+            final int duration) {
         new Thread(new Runnable() {
             // implement functionality for anstract run
             public void run() {
@@ -101,6 +102,9 @@ public class OpenALFacade {
                 // how long it takes to travel to inaudible distance at speed vel[imax]
                 int time = Math.round(distance / (vel[imax] * mps));
 
+                // turn input duration into milliseconds
+                int dur = duration * 1000;
+
                 float[] pos = new float[3];
                 for (int i = 0; i < time; i++) {
                     for (int j = 0; j < 3; j++) {
@@ -108,10 +112,11 @@ public class OpenALFacade {
                     }
                     setListenerPosition(pos[0], pos[1], pos[2]);
                     posTB.setText(pos[0] + " " + pos[1] + " " + pos[2]);
-                    System.out.println(pos[0] + " " + pos[1] + " " + pos[2]);
-                    if (!anyGreater(pos, distance)) {
+                    if (dur >= 0) {
                         try {
                             Thread.sleep(10);
+                            dur -= 10;
+
                         } catch (InterruptedException ex) {
 
                         }
@@ -166,6 +171,15 @@ public class OpenALFacade {
         float newVolume = value / 100.0f;
         alSourcef(s.index, AL_GAIN, newVolume);
         s.volume = newVolume;
+    }
+
+    // Set a delay offest (in seconds)
+    public void setOffsetSeconds(Source s, int offset) {
+        alSourcei(s.index, AL11.AL_SEC_OFFSET, offset);
+    }
+    // Set a delay offest (in samples)
+    public void setOffsetSamples(Source s, int offset) {
+        alSourcei(s.index, AL11.AL_SAMPLE_OFFSET, offset);
     }
 
     // Move source away from origin at source velocity speed. If source has no

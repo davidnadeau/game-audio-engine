@@ -64,7 +64,7 @@ public class OpenALFacade {
      * ************************************************************************
      */
     public void newListener() {
-        //store listener details (location)
+        // store listener details (location)
         alListener3f(AL_POSITION, 0f, 0f, 0f);
         alListener3f(AL_VELOCITY, 0f, 0f, 0f);
         alListenerf(AL_GAIN, 0.5f);
@@ -87,25 +87,28 @@ public class OpenALFacade {
     public void moveListener(final JTextField posTB, final float[] vel,
             int duration) {
         new Thread(new Runnable() {
-            //implement functionality for anstract run
+            // implement functionality for anstract run
             public void run() {
-                //get distance of furthest axis
+                // get distance of furthest axis
                 int distance = 100;
-                //get index of fastest velocity
+                // get index of fastest velocity
                 int imax = getIndexOfMax(vel);
-                //dealing with meters per second. 1 kph = 0.2778 mps
+                // no movement when velocity is 0
+                if (vel[imax] == 0)
+                    return;
+                // dealing with meters per second. 1 kph = 0.2778 mps
                 float mps = 0.2778f;
-                //how long it takes to travel to inaudible distance at speed vel[imax]
-                int time = Math.round((distance / vel[imax]) / mps);
+                // how long it takes to travel to inaudible distance at speed vel[imax]
+                int time = Math.round(distance / (vel[imax] * mps));
 
+                float[] pos = new float[3];
                 for (int i = 0; i < time; i++) {
-                    float[] pos = new float[3];
                     for (int j = 0; j < 3; j++) {
                         pos[j] += vel[j];
                     }
                     setListenerPosition(pos[0], pos[1], pos[2]);
                     posTB.setText(pos[0] + " " + pos[1] + " " + pos[2]);
-
+                    System.out.println(pos[0] + " " + pos[1] + " " + pos[2]);
                     if (!anyGreater(pos, distance)) {
                         try {
                             Thread.sleep(10);
@@ -118,6 +121,7 @@ public class OpenALFacade {
                 }
             }
         }).start();
+
     }
     /**
      * ************************************************************************
@@ -197,7 +201,7 @@ public class OpenALFacade {
                 float mps = 0.2778f;
                 // how long it takes to travel to inaudible distance at speed vel[imax]
                 int time = Math.round(distance / (vel[imax] * mps));
-                System.out.println(time);
+
                 for (int i = 0; i < time; i++) {
                     for (int j = 0; j < 3; j++) {
                         s.position[j] += vel[j];
@@ -343,6 +347,7 @@ public class OpenALFacade {
     }
 
     public void setLoopingMode(Source s, boolean val) {
+        s.looping = val;
         alSourcei(s.index, AL_LOOPING, val ? AL_TRUE : AL_FALSE);
     }
     public void setVelocity(Source s, float[] vel) {
@@ -359,7 +364,8 @@ public class OpenALFacade {
         alSource(s.index, AL_POSITION, fbuf);
     }
     public void setPitch(Source s, int pitch) {
-        alSourcef(s.index, AL_PITCH, (float) (pitch / 50.0));
+        s.pitch = (float) (pitch / 50.0);
+        alSourcef(s.index, AL_PITCH, s.pitch);
     }
     /**
      * ************************************************************************

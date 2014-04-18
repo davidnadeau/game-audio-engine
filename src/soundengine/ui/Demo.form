@@ -97,7 +97,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jPanel2" max="32767" attributes="0"/>
+                          <Component id="sourceParamPanel" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jPanel5" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -144,7 +144,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="sourceParamPanel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               </Group>
@@ -400,6 +400,9 @@
                   <Connection code="sourceListModel" type="code"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="sourceListValueChanged"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -411,7 +414,7 @@
             <Property name="text" type="java.lang.String" value="Sources:"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="jPanel2">
+        <Container class="javax.swing.JPanel" name="sourceParamPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="42" green="36" red="7" type="rgb"/>
@@ -424,23 +427,19 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="playSample1" min="-2" pref="89" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="stopSample1" min="-2" pref="99" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="pauseSample1" min="-2" pref="90" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="playSample" min="-2" pref="89" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Component id="stopSample" min="-2" pref="99" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="pauseSample" min="-2" pref="90" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jSlider2" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
+                          <Component id="sourceVolumeSlider" alignment="0" min="-2" pref="303" max="-2" attributes="0"/>
                           <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -466,9 +465,9 @@
                           <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="playSample1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pauseSample1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="stopSample1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="playSample" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="pauseSample" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="stopSample" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
@@ -479,7 +478,7 @@
                           <Group type="102" attributes="0">
                               <Component id="jLabel7" min="-2" pref="15" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSlider2" min="-2" pref="16" max="-2" attributes="0"/>
+                              <Component id="sourceVolumeSlider" min="-2" pref="16" max="-2" attributes="0"/>
                           </Group>
                           <Component id="isLoopingCB" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -515,17 +514,17 @@
                 <Property name="text" type="java.lang.String" value="Volume:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JSlider" name="jSlider2">
+            <Component class="javax.swing.JSlider" name="sourceVolumeSlider">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="42" green="36" red="7" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSlider2StateChanged"/>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="sourceVolumeSliderStateChanged"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="stopSample1">
+            <Component class="javax.swing.JButton" name="stopSample">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="2f" green="32" red="dc" type="rgb"/>
@@ -539,10 +538,10 @@
                 <Property name="text" type="java.lang.String" value="Stop"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopSample1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopSampleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="pauseSample1">
+            <Component class="javax.swing.JButton" name="pauseSample">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="16" green="4b" red="cb" type="rgb"/>
@@ -556,10 +555,10 @@
                 <Property name="text" type="java.lang.String" value="Pause"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pauseSample1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="pauseSampleActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="playSample1">
+            <Component class="javax.swing.JButton" name="playSample">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="99" red="85" type="rgb"/>
@@ -573,7 +572,7 @@
                 <Property name="text" type="java.lang.String" value="Play"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playSample1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="playSampleActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel8">
@@ -795,7 +794,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel14" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="stopSample10" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
+                                  <Component id="fadeOutBut" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                                   <Component id="fadeInBut" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -811,7 +810,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="fadeInBut" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="stopSample10" min="-2" max="-2" attributes="0"/>
+                          <Component id="fadeOutBut" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel12" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
@@ -850,7 +849,7 @@
                     <Property name="text" type="java.lang.String" value="Effects:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JButton" name="stopSample10">
+                <Component class="javax.swing.JButton" name="fadeOutBut">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="16" green="4b" red="cb" type="rgb"/>
@@ -864,7 +863,7 @@
                     <Property name="text" type="java.lang.String" value="Fade Out"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopSample10ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fadeOutButActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel12">

@@ -9,7 +9,7 @@ public class Buffer {
 
     public Buffer(String fileName) {
         name = fileName;
-        buffer = OpenALFacade.loadSample(fileName + ".wav");
+        buffer = OpenALFacade.loadSample(fileName);
     }
 
 }

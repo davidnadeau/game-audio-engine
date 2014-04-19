@@ -27,15 +27,16 @@ public class OpenALFacade {
      * ************************************************************************
      */
     // Load audio sample into a buffer, return this buffer
-    public static IntBuffer loadSample(String fileName) {
+    public static BufferData loadSample(String fileName) {
         // loading and storing the audio
         IntBuffer buf = BufferUtils.createIntBuffer(1);
         alGenBuffers(buf);
         WaveData wave = WaveData.create("music/" + fileName);
         alBufferData(buf.get(0), wave.format, wave.data,
                 wave.samplerate);
+        BufferData bd = new BufferData(buf, wave.data);
         wave.dispose();
-        return buf;
+        return bd;
     }
     // Copy buffer into an audio source and change basic properties
     public static int storeSource(IntBuffer buf) {

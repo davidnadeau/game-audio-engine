@@ -201,7 +201,7 @@ public class OpenALFacade {
                 // if the source has no velocity, set a default speed of 0.1f in z
                 boolean allZero = ifAllZero(vel);
                 if (allZero) {
-                    vel = new float[] {0.0f, 0.0f, 0.1f};
+                    vel = new float[] {0.0f, 0.0f, 0.2f};
                 }
 
                 velTB.setText(vel[0] + " " + vel[1] + " " + vel[2]);
@@ -227,7 +227,7 @@ public class OpenALFacade {
 
                     if (!anyGreater(s.position, distance)) {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(100);
                         } catch (InterruptedException ex) {
 
                         }
@@ -277,7 +277,7 @@ public class OpenALFacade {
                 // if the source has no velocity, set a default speed of 0.1f in z
                 boolean allZero = ifAllZero(vel);
                 if (allZero) {
-                    vel = new float[] {0.0f, 0.0f, 0.1f};
+                    vel = new float[] {0.0f, 0.0f, 0.2f};
                 }
                 velTB.setText(vel[0] + " " + vel[1] + " " + vel[2]);
 
@@ -303,7 +303,7 @@ public class OpenALFacade {
 
                     if (!anyGreater(s.position, distance)) {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(100);
                         } catch (InterruptedException ex) {
 
                         }
@@ -323,8 +323,8 @@ public class OpenALFacade {
         return buf[0] > val || buf[1] > val || buf[2] > val;
     }
 
-    public void moveSource(Source s, final JTextField posTB, final float[] vel,
-            int duration) {
+    public void moveSource(final Source s, final JTextField posTB,
+            final float[] vel, final int duration) {
         new Thread(new Runnable() {
             // implement functionality for anstract run
             public void run() {
@@ -332,22 +332,29 @@ public class OpenALFacade {
                 int distance = 100;
                 // get index of fastest velocity
                 int imax = getIndexOfMax(vel);
+                // no movement when velocity is 0
+                if (vel[imax] == 0)
+                    return;
                 // dealing with meters per second. 1 kph = 0.2778 mps
                 float mps = 0.2778f;
-                // how long it takes to travel to inaudible distance at speed vel[imax]
-                int time = Math.round((distance / vel[imax]) / mps);
+                // how long it takes to travel to unaudible distance at speed vel[imax]
+                int time = Math.round(distance / (vel[imax] * mps));
 
+                // turn input duration into milliseconds
+                int dur = duration * 1000;
+
+                float[] pos = new float[3];
                 for (int i = 0; i < time; i++) {
-                    float[] pos = new float[3];
                     for (int j = 0; j < 3; j++) {
                         pos[j] += vel[j];
                     }
-                    setListenerPosition(pos[0], pos[1], pos[2]);
+                    setPosition(s, pos);
                     posTB.setText(pos[0] + " " + pos[1] + " " + pos[2]);
-
-                    if (!anyGreater(pos, distance)) {
+                    if (dur >= 0) {
                         try {
-                            Thread.sleep(10);
+                            Thread.sleep(100);
+                            dur -= 100;
+
                         } catch (InterruptedException ex) {
 
                         }
@@ -356,8 +363,7 @@ public class OpenALFacade {
                     }
                 }
             }
-        }
-        ).start();
+        }).start();
 
     }
 

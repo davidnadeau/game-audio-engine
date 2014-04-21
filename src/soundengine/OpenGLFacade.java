@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package soundengine;
 
 import java.awt.Canvas;
@@ -16,15 +11,28 @@ import static org.lwjgl.opengl.GL11.*;
 public class OpenGLFacade {
 
     private final static float canvassize = 475f;
-    public void drawThing() {
-        System.out.println(isActive());
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    }
-
+    // these variables are modified from outside of the drawWaveForm thread.
+    // because of this they must be marked volatile, and any write or read operation
+    // must synchronize the OpenGLFacade instance.
+    //
+    // Contains the sources waveform. Depending on which button the user clicked,
+    // this linkedlist could contain 30k, 100k, or more samples
     public volatile LinkedList<Byte> waveform;
+
+    // Determines wether a source is selected. A source must be selected in order
+    // for the waveform to have any samples in it
+    //
+    // if true  -> check if firstRun
+    // if false -> do nothing
     public volatile boolean selected = false;
-    public volatile boolean firstRun = true;
+
+    // While a source is selected, it should only be drawn once. No point wasting
+    // cpu cycles redrawing the same thing.
+    //
+    // if true  -> draw waveform
+    // if false -> do nothing
+    public volatile boolean firstRun = false;
 
     public synchronized void drawWaveForm(final Canvas c) {
         new Thread(new Runnable() {
@@ -48,57 +56,26 @@ public class OpenGLFacade {
                 while (!isCloseRequested()) {
 
                     if (selected) {
-
-                        byte min = 0;
-                        byte max = 0;
                         if (firstRun) {
-                            System.out.println("First");
-                            // clear the screen and depth buffer
                             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-                            // find the min and max of the first 250 samples
-                            // to scale each sample between [0,100] for graphing
-                            byte[] minmax = new byte[2];
-                            minmax = findGlobalMaximums(waveform);
-                            min = minmax[0];
-                            max = minmax[1];
+                            float[] c = getColors();
+                            // set the color of the quad (R,G,B,A)
+                            glColor3f(c[0], c[1], c[2]);
                             firstRun = false;
+
+                            drawRectangles();
+                            update();
                         }
 
-                        float offset = 0.0f;
-                        float number = waveform.size();
-                        float width = canvassize / number;
-
-                        float[] c = getColors();
-                        // set the color of the quad (R,G,B,A)
-                        glColor3f(c[0], c[1], c[2]);
-                        for (int i = 0; i < number; i++) {
-                            if (firstRun)
-                                break;
-
-                            int height = scale(waveform.get(i), min, max,
-                                    (byte) 100);
-                            if (i % 2500 == 0) {
-                                c = getColors();
-                                System.out.println(
-                                        c[0] + " : " + c[1] + " : " + c[2]);
-                                // set the color of the quad (R,G,B,A)
-                                glColor3f(c[0], c[1], c[2]);
-
-                            }
-                            // draw quad
-                            glBegin(GL_QUADS);
-                            glVertex2f(offset, 0);
-                            glVertex2f(offset + width, 0);
-                            glVertex2f(offset + width, height);
-                            glVertex2f(offset, height);
-                            glEnd();
-                            offset += width;
-                        }
                     } else {
-                        firstRun = true;
+                        // if something is still displaying, clear it
+                        if (firstRun == false) {
+                            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+                            firstRun = true;
+                            update();
+                        }
                     }
-                    update();
+
                     try {
                         Thread.sleep(10);
                     } catch (InterruptedException ex) {
@@ -110,10 +87,40 @@ public class OpenGLFacade {
 
     }
 
-    Random r = new Random();
+    private synchronized void drawRectangles() {
+        float offset = 0.0f;
+        float number = waveform.size();
+        float width = canvassize / number;
+
+        for (int i = 0; i < number; i++) {
+            // When user switches to a new source, stop drawing and
+            // allow new size to propagate to thread.
+            // bug fix: when switching to source with < 30k samples,
+            //          for loop attempted to get() indexes larger than
+            //          the size() of the source buffer.
+            if (firstRun)
+                break;
+
+            int height = waveform.get(i);
+
+            // draw quad
+            glBegin(GL_QUADS);
+            glVertex2f(offset, 0);
+            glVertex2f(offset + width, 0);
+            glVertex2f(offset + width, height);
+            glVertex2f(offset, height);
+            glEnd();
+
+            offset += width;
+
+        }
+    }
+
+    // safe way to create a random number in a range with nextInt()
+    private Random r = new Random();
+    // get a random colour from the 8 choices. Used to randomely colour waveforms
     private float[] getColors() {
         int c = r.nextInt(8);
-        System.out.println(c);
         float[] b = new float[3];
         switch (c) {
             case 0: // yellow
@@ -157,21 +164,6 @@ public class OpenGLFacade {
                 break;
         }
         return b;
-    }
-
-//find global min and global max values in list
-    private byte[] findGlobalMaximums(LinkedList<Byte> l) {
-        int c1, c2;
-        byte[] m = new byte[2];
-        for (int i = 0; i < l.size(); i++) {
-            m[0] = l.get(i) < m[0] ? l.get(i) : m[0];
-            m[1] = l.get(i) > m[1] ? l.get(i) : m[1];
-        }
-        return m;
-    }
-
-    private byte scale(byte val, byte min, byte max, byte range) {
-        return (byte) ((float) ((float) (val - min) / (float) (max - min)) * range);
     }
 
 }

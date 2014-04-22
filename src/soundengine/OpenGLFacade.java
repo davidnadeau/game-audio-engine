@@ -10,8 +10,6 @@ import static org.lwjgl.opengl.GL11.*;
 
 public class OpenGLFacade {
 
-    private final static float canvassize = 475f;
-
     // these variables are modified from outside of the drawWaveForm thread.
     // because of this they must be marked volatile, and any write or read operation
     // must synchronize the OpenGLFacade instance.
@@ -34,14 +32,19 @@ public class OpenGLFacade {
     // if false -> do nothing
     public volatile boolean firstRun = false;
 
+    // current canvas size
+    public volatile float canvassize = 800f;
+    // if the canvas size changes, we need to resize the viewport and
+    // projection matrix
+    public volatile boolean canvassizeChanged = false;
+
     public synchronized void drawWaveForm(final Canvas c) {
         new Thread(new Runnable() {
             // implement functionality for anstract run
             public void run() {
-
                 try {
                     setParent(c);
-                    setDisplayMode(new DisplayMode(475, 103));
+                    setDisplayMode(new DisplayMode((int) canvassize, 103));
                     create();
 
                 } catch (LWJGLException e) {
@@ -50,20 +53,29 @@ public class OpenGLFacade {
                 // init OpenGL
                 glMatrixMode(GL_PROJECTION);
                 glLoadIdentity();
-                glOrtho(0, 475, 0, 103, 1, -1);
+                glOrtho(0, canvassize, 0, 103, 1, -1);
                 glMatrixMode(GL_MODELVIEW);
 
                 while (!isCloseRequested()) {
 
                     if (selected) {
                         if (firstRun) {
+                            if (canvassizeChanged) {
+                                glViewport(0, 0, (int) canvassize, 103);
+                                // init OpenGL
+                                glMatrixMode(GL_PROJECTION);
+                                glLoadIdentity();
+                                glOrtho(0, canvassize, 0, 103, 1, -1);
+                                glMatrixMode(GL_MODELVIEW);
+                                canvassizeChanged = false;
+                            }
                             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
                             float[] c = getColors();
                             // set the color of the quad (R,G,B,A)
                             glColor3f(c[0], c[1], c[2]);
                             firstRun = false;
 
-                            drawRectangles();
+                            drawRectangles(canvassize);
                             update();
                         }
 
@@ -87,10 +99,12 @@ public class OpenGLFacade {
 
     }
 
-    private synchronized void drawRectangles() {
+    private synchronized void drawRectangles(float canvassize) {
         float offset = 0.0f;
         float number = waveform.size();
         float width = canvassize / number;
+        System.out.println("WODTH: " + width);
+        System.out.println("size: " + canvassize);
 
         for (int i = 0; i < number; i++) {
             // When user switches to a new source, stop drawing and
@@ -112,8 +126,8 @@ public class OpenGLFacade {
             glEnd();
 
             offset += width;
-
         }
+        System.out.println(offset);
     }
 
     // safe way to create a random number in a range with nextInt()

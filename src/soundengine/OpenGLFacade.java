@@ -103,8 +103,6 @@ public class OpenGLFacade {
         float offset = 0.0f;
         float number = waveform.size();
         float width = canvassize / number;
-        System.out.println("WODTH: " + width);
-        System.out.println("size: " + canvassize);
 
         for (int i = 0; i < number; i++) {
             // When user switches to a new source, stop drawing and
@@ -127,7 +125,6 @@ public class OpenGLFacade {
 
             offset += width;
         }
-        System.out.println(offset);
     }
 
     // safe way to create a random number in a range with nextInt()

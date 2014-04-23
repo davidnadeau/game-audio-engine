@@ -115,8 +115,8 @@ public class OpenALFacade {
                     posTB.setText(pos[0] + " " + pos[1] + " " + pos[2]);
                     if (dur >= 0) {
                         try {
-                            Thread.sleep(10);
-                            dur -= 10;
+                            Thread.sleep(100);
+                            dur -= 100;
 
                         } catch (InterruptedException ex) {
 
@@ -194,10 +194,10 @@ public class OpenALFacade {
         new Thread(new Runnable() {
             // implement functionality for anstract run
             public void run() {
-                int distance = 40;// meters
+                int distance = 20;// meters
                 // place current sources velocity into temp buf
                 float[] vel = new float[] {s.velocity[0], s.velocity[1], s.velocity[2]};
-                System.out.println(vel[0] + ":" + vel[1] + ":" + vel[2]);
+
                 // if the source has no velocity, set a default speed of 0.1f in z
                 boolean allZero = ifAllZero(vel);
                 if (allZero) {

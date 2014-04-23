@@ -157,11 +157,11 @@ public class Demo extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel1.setForeground(new java.awt.Color(203, 75, 22));
         jLabel1.setText("Position:");
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel2.setForeground(new java.awt.Color(203, 75, 22));
         jLabel2.setText("Velocity:");
 
         moveListener3But.setBackground(new java.awt.Color(220, 50, 47));
@@ -337,7 +337,7 @@ public class Demo extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(238, 232, 213));
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel10.setForeground(new java.awt.Color(203, 75, 22));
         jLabel10.setText("Velocity:");
 
         sourcePositionInput.setText("0.0 0.0 0.0");
@@ -395,7 +395,7 @@ public class Demo extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel11.setForeground(new java.awt.Color(203, 75, 22));
         jLabel11.setText("Position:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -544,7 +544,7 @@ public class Demo extends javax.swing.JFrame {
         );
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel9.setForeground(new java.awt.Color(203, 75, 22));
         jLabel9.setText("Seconds:");
 
         offsetSecondsTB.setText("0");
@@ -574,7 +574,7 @@ public class Demo extends javax.swing.JFrame {
         offsetSamplesTB.setText("0");
 
         jLabel17.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(101, 123, 131));
+        jLabel17.setForeground(new java.awt.Color(203, 75, 22));
         jLabel17.setText("Samples:");
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -597,13 +597,13 @@ public class Demo extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(offsetSecondsTB, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(offsetSecBut)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(offsetSecBut, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
                         .addComponent(jLabel17)
-                        .addGap(3, 3, 3)
-                        .addComponent(offsetSamplesTB, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(offsetSamplesTB, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(offsetSamBut)
+                        .addComponent(offsetSamBut, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel18)
@@ -614,23 +614,22 @@ public class Demo extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel21))
-                .addGap(1, 1, 1)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel21)
+                        .addGap(53, 53, 53))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(offsetSecBut)
-                            .addComponent(offsetSamBut))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(offsetSecondsTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel17)
-                        .addComponent(offsetSamplesTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                            .addComponent(offsetSecondsTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(offsetSecBut)
+                            .addComponent(jLabel17)
+                            .addComponent(offsetSamplesTB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(offsetSamBut))
+                        .addGap(11, 11, 11))))
         );
 
         javax.swing.GroupLayout sourceParamPanelLayout = new javax.swing.GroupLayout(sourceParamPanel);
@@ -1073,10 +1072,6 @@ public class Demo extends javax.swing.JFrame {
     }//GEN-LAST:event_loadFullWaveformButActionPerformed
 
     private void masterVolumeSliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_masterVolumeSliderStateChanged
-        //get select list index
-        int srcIndex = sourceList.getSelectedIndex();
-        //get sample at selected list index from linkedlist
-        Source src = sources.get(srcIndex);
         AL.setMasterVolume(masterVolumeSlider.getValue());
     }//GEN-LAST:event_masterVolumeSliderStateChanged
 
@@ -1093,6 +1088,7 @@ public class Demo extends javax.swing.JFrame {
     }//GEN-LAST:event_pauseSample1ActionPerformed
 
     private void sourceListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_sourceListValueChanged
+
         if (sourceList.isSelectionEmpty()) {
             distableSourceParams();
             // writting to a variable being accessed from a thread.
@@ -1108,6 +1104,10 @@ public class Demo extends javax.swing.JFrame {
             // get sample at selected list index from linkedlist
             Source src = sources.get(srcIndex);
 
+            sourceVelocityInput.setText(
+                    src.velocity[0] + " " + src.velocity[1] + " " + src.velocity[2]);
+            sourcePositionInput.setText(
+                    src.position[0] + " " + src.position[1] + " " + src.position[2]);
             sourceVolumeSlider.setValue((int) (src.volume * 100));
             pitchSlider.setValue((int) (src.pitch * 50));
             isLoopingCB.setSelected(src.looping);
@@ -1258,6 +1258,9 @@ public class Demo extends javax.swing.JFrame {
         AL.setPosition(src, new float[] {Float.parseFloat(input[0]),
             Float.parseFloat(input[1]),
             Float.parseFloat(input[2])});
+        src.position = new float[] {Float.parseFloat(input[0]),
+            Float.parseFloat(input[1]),
+            Float.parseFloat(input[2])};
     }//GEN-LAST:event_setPositionBut1ActionPerformed
 
     private void setVelocityBut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setVelocityBut1ActionPerformed
@@ -1269,6 +1272,9 @@ public class Demo extends javax.swing.JFrame {
         AL.setVelocity(src, new float[] {Float.parseFloat(input[0]),
             Float.parseFloat(input[1]),
             Float.parseFloat(input[2])});
+        src.velocity = new float[] {Float.parseFloat(input[0]),
+            Float.parseFloat(input[1]),
+            Float.parseFloat(input[2])};
     }//GEN-LAST:event_setVelocityBut1ActionPerformed
 
     private void deleteSrcButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSrcButActionPerformed
@@ -1361,7 +1367,6 @@ public class Demo extends javax.swing.JFrame {
 
     private void canvasComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_canvasComponentResized
         synchronized (GL) {
-            System.out.println("SD");
             GL.canvassize = canvas.getWidth();
             GL.canvassizeChanged = true;
         }

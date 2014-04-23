@@ -39,7 +39,10 @@ public class BufferData {
     }
     // scales 8 bit value from [0,1] and multiplies by 100, result: [0,100]
     private byte scale(byte val) {
-        return (byte) ((((float) val + 128.0f) / 255.0f) * 100.0f);
+        if (val < -125) {
+            return (byte) 1;
+        }
+        return (byte) (((val + 128.0f) / 255.0f) * 100.0f);
     }
 
 }

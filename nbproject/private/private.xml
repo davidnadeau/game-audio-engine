@@ -15,7 +15,10 @@
             <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/Buffer.java</file>
             <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/ui/Demo.java</file>
             <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/OpenGLFacade.java</file>
+            <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/SoundEngine.java</file>
+            <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/OpenALFacade.java</file>
             <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/Source.java</file>
+            <file>file:/home/soote/documents/personal/audio-engine/game-audio-engine/src/soundengine/BufferData.java</file>
         </group>
     </open-files>
 </project-private>
